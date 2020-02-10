@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: a93935ebaa8dc4e2689dbf7010c19004
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - waterSplash: {fileID: 8300000, guid: 84d919a2db3064bb6aa74e88001dcfbc, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
