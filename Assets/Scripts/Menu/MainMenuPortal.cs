@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Analytics;
 
 public class MainMenuPortal : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class MainMenuPortal : MonoBehaviour
     [SerializeField] int nextSceneNumber;
     [SerializeField] int previousW;
     [SerializeField] int previousL;
+    public bool collided;
     Color original;
     MainMenu mainmenu;
 
@@ -16,10 +18,15 @@ public class MainMenuPortal : MonoBehaviour
     {
         if (other.collider.tag == "Player")
         {
+            collided = true;
             if (MainMenu.levelComplete[previousW, previousL])
             {  //throw           
                 SceneManager.LoadScene(nextSceneNumber);
-                MainMenu.loseLevel = nextSceneNumber;             
+                MainMenu.loseLevel = nextSceneNumber;
+                //AnalyticsEvent.Custom("Level completed at", new Dictionary<string, object>
+                // {
+                //        { "Time", Time.time }
+                // });
             }
             else {
                 original = GetComponent<Renderer>().material.color;

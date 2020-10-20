@@ -14,6 +14,7 @@ public class MainMenu : MonoBehaviour
     //private string findButton;
     //private Button playButton;
     //public static float startingTime;
+    private int levelCompleted = 5;
 
     //Variables for Ingame Levels
     public static int loseLevel = 0;
@@ -24,7 +25,7 @@ public class MainMenu : MonoBehaviour
 
     //Level 1 is set to true for first time players to make it accessible along with the save file loading
     void Start()
-    {       
+    {
         levelComplete[0, 0] = true;
         string path = Path.Combine(Application.persistentDataPath, "saveFile.balls");
         if (File.Exists(path))
@@ -47,7 +48,7 @@ public class MainMenu : MonoBehaviour
     //    //playButton = GameObject.Find(findButton).GetComponent<Button>();
     //    Debug.Log(findButton[5]);
     //    int a = System.Convert.ToInt32(findButton[5]) - 48;
-    //    Debug.Log(a);
+    //   Debug.Log(a);
     //    loseLevel = a;
     //    AnalyticsEvent.Custom("Game started at", new Dictionary<string, object>
     //    {
@@ -63,6 +64,11 @@ public class MainMenu : MonoBehaviour
     public void QuitButton()
     {
         Application.Quit();
+        Analytics.CustomEvent("amount of users that have completed this level: ", new Dictionary<string, object>
+            {
+                {"users: ", levelCompleted},
+               {"In Scene", SceneManager.GetActiveScene().name}
+            });
     }
     public void SaveFile()
     {

@@ -8,6 +8,7 @@ namespace Tests
 {
     public class FindTargetPositionTest
     {
+        MainMenuPortal mainMenuport;
         // A Test behaves as an ordinary method
         [Test]
         public void FindTargetPositionTestSimplePasses()
@@ -29,16 +30,16 @@ namespace Tests
         // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
         // `yield return null;` to skip a frame.
         [UnityTest]
-        public IEnumerator FindTargetPositionTestWithEnumeratorPasses()
+        public IEnumerator FindCollisionTestWithEnumeratorPasses()
         {
             // Use the Assert class to test conditions.
-            //GameObject playerObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("Prefabs/Player"));
+            GameObject playerObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("Prefabs/Player"));
+            playerObject.transform.position = Vector3.zero;
             GameObject winPlatformObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("Prefabs/Tiles/WinPlatform"));
+            winPlatformObject.transform.position = Vector3.zero;
 
-            //Assert.
-
-            // Use yield to skip a frame.
-            yield return null;
+            yield return new WaitForSeconds(0.1f);
+            Assert.AreEqual(true, mainMenuport.collided);
         }
     }
 }
